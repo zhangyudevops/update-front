@@ -3,18 +3,28 @@ import { getVarConfig, updateVarConfig } from "@/api/config";
 import { onMounted, ref } from "vue";
 import { Check, Edit } from "@element-plus/icons-vue";
 
+// import type { TabsPaneContext } from "element-plus";
+
+// const activeName = ref("first");
 const varData = ref();
 
+// const handleClick = (tab: TabsPaneContext, event: Event) => {
+//   console.log(tab, event);
+// };
 const config = async () => {
   await getVarConfig().then(res => {
     if (res.code === 0) {
-      // varData.value = Object.keys(res.data.config).map(key => {
-      //   return {
-      //     name: key,
-      //     value: res.data.config[key]
-      //   };
-      // });
       varData.value = res.data.config;
+      // 把返回的列表根据app字段进行分组，组成多个列表
+      // const appMap = new Map();
+      // for (const item of varData.value) {
+      //   if (appMap.has(item.app)) {
+      //     appMap.get(item.app).push(item);
+      //   } else {
+      //     appMap.set(item.app, [item]);
+      //   }
+      // }
+      // varData.value = appMap;
     } else {
       console.log("获取配置失败");
     }
@@ -78,6 +88,20 @@ onMounted(() => {
     </el-col>
   </el-row>
 </template>
+
+<!--<template>-->
+<!--  <el-tabs-->
+<!--    v-model="activeName"-->
+<!--    type="card"-->
+<!--    class="demo-tabs"-->
+<!--    @tab-click="handleClick"-->
+<!--  >-->
+<!--    <el-tab-pane label="first" name="first">User</el-tab-pane>-->
+<!--    <el-tab-pane label="Config" name="second">Config</el-tab-pane>-->
+<!--    <el-tab-pane label="Role" name="third">Role</el-tab-pane>-->
+<!--    <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>-->
+<!--  </el-tabs>-->
+<!--</template>-->
 
 <style scoped lang="scss">
 .el-row {
