@@ -1,7 +1,7 @@
 export default {
   path: "/update",
   meta: {
-    icon: "emojione:package",
+    icon: "arcticons:tinc-app",
     title: "应用升级",
     showLink: true
   },
